@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <h1>Time to edit stuff</h1>
+    
+
+    <form id="editForm" method="PUT" action="http://127.0.0.1:3000/customer">
+        
+        <label for="id">Customer ID</label>
+        <input type="text" name="id" value="<%= editCustomer.id %>" disabled/><br>
+        <label for="customerName">Customer name</label>
+        <input type="text" name="customerName" id="customerName" value="<%= editCustomer.name %>"/><br>
+        <label for="order">Customer order</label>
+        <input type="text" name="order" id="order" value="<%= editCustomer.order %>"/><br>
+        <label for="country">Customer country</label>
+        <input type="text" name="country" id="country" value="<%= editCustomer.country %>"/>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

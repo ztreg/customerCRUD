@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Customerlist</title>
+</head>
+<body>
+    
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Customer NAME</th>
+            <th>Order</th>
+            <th>Country</th>
+        </tr>
+        <% for(let customer of customers) { %>
+            <tr>
+           <td name = "id"><a href="editCustomer/<%= customer.id %>"> <%= customer.id %></a></td>
+           <td name = "cName"><%= customer.customer %></td>
+           <td name = "cOrder"><%= customer.order %></td>
+           <td name = "cCountry"> <%= customer.country %></td>
+            </tr>
+       <% } %>
+    </table>
+
+</body>
+</html>
