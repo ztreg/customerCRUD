@@ -21,6 +21,13 @@
            <td name = "cName"><%= customer.customer %></td>
            <td name = "cOrder"><%= customer.order %></td>
            <td name = "cCountry"> <%= customer.country %></td>
+           <td> 
+            <form action="http://127.0.0.1:3000/deleteCustomer/<%= customer.id %>" method="post">
+                <button type="submit" class="btn-link">&times</button>
+            </form>
+           </td>
+               
+            <!--<a href="deleteCustomer/:<%= customer.id %>">&times</a></td>-->
             </tr>
        <% } %>
     </table>

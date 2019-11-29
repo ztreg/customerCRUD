@@ -7,7 +7,6 @@ let http = require('http');
 const fetch = require("node-fetch");
 let request = require("request");
 
-
 const app = express();
 
 let jsonData;
@@ -25,7 +24,7 @@ function updateCustomerListFrontEnd() {
     //console.log(response);
   });
 }
-
+updateCustomerListFrontEnd();
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -44,14 +43,57 @@ app.get("/", function(req, res) {
   });
 });
 
+app.get("/customer/:country", function(req, res){
+  let country = req.params.country;
+  let countryArray = [];
+  let customerObject = {};
+  
+  for (aCustomer of jsonData) {
+    if (aCustomer.country == country) {
+      customerObject = {
+        name : aCustomer.customer,
+        country : aCustomer.country
+      };
+      countryArray.push(customerObject);
+      
+    }
+  }
+  if(countryArray.length == 0) {
+    res.send(500);
+  }
+  else {
+    res.render("country", {countryArray});
+  }
+  
+});
+
+app.get("/customer/:id/order", function(req, res) {
+  let chosenID = req.params.id;
+  let length = jsonData.length;
+  for (aCustomer of jsonData) {
+    if (aCustomer.id == chosenID) {
+      let send = aCustomer.order;
+      console.log("okok");
+      res.render("customerOrders", {send});
+    }
+    length--;
+    if(length == 0) {
+      res.send("NOPE");
+    }
+  }
+
+});
+
 app.get("/createCustomer", function(req, res) {
   res.render("createCustomer");
 });
 app.get("/editCustomer", function(req, res) {
   res.render("editCustomer");
 });
+
+
+
 app.get("/editCustomer/:id", function(req, res) {
-  let id = req.params.id;
   let editCustomer = {
     id: "",
     name: "",
@@ -70,7 +112,7 @@ app.get("/editCustomer/:id", function(req, res) {
     }
   }
   console.log(editCustomer);
-  res.render("editCustomer", {
+    res.render("editCustomer", {
     editCustomer
   });
 });
